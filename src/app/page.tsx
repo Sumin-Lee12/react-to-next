@@ -1,17 +1,17 @@
-// HomePage.jsx
+import React from "react";
 
-type IntroType = {
-    description1: string,
-    description2: string,
-    description3: string
-}
+type Intro = {
+  description1: string;
+  description2: string;
+  description3: string;
+};
 
-export default async function HomePage() {
-  const res = await fetch("http://localhost:4000/intro", {
-    cache: "force-cache"
-  })
-  const introData:IntroType[] = await res.json();
-
+const HomePage = async () => {
+  const response = await fetch("http://localhost:4000/intro", {
+    cache: "force-cache",
+  });
+  const introData: Intro = await response.json();
+  console.log("data", introData);
 
   return (
     <div className="home-container">
@@ -32,5 +32,6 @@ export default async function HomePage() {
       </div>
     </div>
   );
-}
+};
 
+export default HomePage;
