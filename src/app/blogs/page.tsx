@@ -1,23 +1,19 @@
 
-type Blogs = {
+type Blog = {
       id: string,
       title: string,
       content: string,
       author: string,
       category: string,
       createdAt: number,
-      tags: [
-        string,
-        string,
-        string
-      ]
+      tags: string[]
     }
 
 const BlogsPage = async () => {
   const res = await fetch("http://localhost:4000/blogs", {
     cache: "no-cache",
   })
-  const blogs:Blogs[] = res.json();
+  const blogs:Blog[] = res.json();
 
   return (
     <div className="blog-container">
@@ -43,7 +39,7 @@ const BlogsPage = async () => {
             <p className="blog-content">{blog.content}</p>
 
             <div className="blog-tags">
-              {blog.tags.map((tag, index) => (
+              {blogs.tags.map((tag, index) => (
                 <span key={index} className="tag">
                   #{tag}
                 </span>
